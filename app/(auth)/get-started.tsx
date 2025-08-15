@@ -6,24 +6,21 @@ import Svg, { Path } from 'react-native-svg';
 
 const Stat = ({ value, label }: { value: string, label: string }) => (
     <View className="items-center">
-        <Text className="text-white/60 text-4xl font-semibold">{value}</Text>
+        <Text className="text-white/60 text-3xl font-semibold">{value}</Text>
         <Text className="text-white/70 text-sm uppercase tracking-wider">{label}</Text>
     </View>
 );
 
 const OnboardingScreen = () => {
     const router = useRouter();
-
-    // const handleGetStarted = () => {
-    // };
-
+    
     const handleLogin = () => {
         router.push('/login');
     };
 
     return (
         <ImageBackground
-            source={require('../assets/images/explore-bg.png')}
+            source={require('../../assets/images/explore-bg.png')}
             className="flex-1"
         >
             <View className="flex-1 bg-black/70 p-6">
@@ -59,8 +56,8 @@ const OnboardingScreen = () => {
                         <View className="flex-row items-center justify-between w-full mb-8">
                             <Stat value="1 Billion" label="breaths taken" />
                             <Image
-                                source={require('../assets/images/splash-icon.png')}
-                                className="w-24 h-24"
+                                source={require('../../assets/images/app-of-day.png')}
+                                className="w-[120px] h-[120px] "
                                 resizeMode="contain"
                             />
                             <Stat value="4 Million" label="users worldwide" />
@@ -68,7 +65,7 @@ const OnboardingScreen = () => {
 
                         {/* Action Buttons */}
                         <TouchableOpacity
-                            onPress={() => router.push('/onBoardingGoals')}
+                            onPress={() => router.push('/get-started-goals')}
                             className="bg-white rounded-full py-4 w-full"
                         >
                             <Text className="text-black text-lg font-bold text-center">Get Started</Text>

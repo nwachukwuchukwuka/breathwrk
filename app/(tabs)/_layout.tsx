@@ -1,10 +1,13 @@
 import Entypo from '@expo/vector-icons/Entypo';
 import Feather from '@expo/vector-icons/Feather';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
 
 export default function TabsLayout() {
+    const isAuthenticated = false
+    if (!isAuthenticated) return <Redirect href="/get-started" />
+
     return (
         <Tabs
             screenOptions={{

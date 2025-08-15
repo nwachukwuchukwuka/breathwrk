@@ -58,7 +58,6 @@ type BreathingExercise = {
 
 const BreathingExerciseChip = ({ item }: { item: BreathingExercise }) => (
     <Link href={{
-        // pathname: '/breathing-exercise/[id]',
         pathname: '../components/explore/breathingExercise/[id]',
         params: { id: item.id, title: item.title }
     }} asChild>

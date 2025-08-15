@@ -8,28 +8,63 @@ export type Goal = {
 
 }
 
-// export const goals = [
-//     { id: 'sleep', emoji: '🛌', text: 'Sleep', top: '10%', left: '15%' },
-//     { id: 'mood', emoji: '😌', text: 'Mood', top: '10%', right: '15%' },
-//     { id: 'energy', emoji: '⚡️', text: 'Energy', top: '22%', left: '5%' },
-//     { id: 'nervous', emoji: '💡', text: 'Nervous System', top: '22%', right: '5%' },
-//     { id: 'cognition', emoji: '🧠', text: 'Cognition', top: '34%', left: '10%' },
-//     { id: 'stress', emoji: '🧘', text: 'Stress', top: '34%', right: '15%' },
-//     { id: 'heart', emoji: '❤️‍🩹', text: 'Heart Health', top: '70%', left: '10%' },
-//     { id: 'endurance', emoji: '🏃', text: 'Endurance', top: '70%', right: '10%' },
-//     { id: 'immunity', emoji: '🛡️', text: 'Immunity', top: '82%', left: '15%' },
-//     { id: 'lung', emoji: '🫁', text: 'Lung Capacity', top: '82%', right: '15%' },
-// ];
-
-export const goals: Goal[] = [
-    { id: 'sleep', emoji: '🛌', text: 'Sleep', top: '10%', left: '15%' },
-    { id: 'mood', emoji: '😌', text: 'Mood', top: '10%', right: '15%' },
-    { id: 'energy', emoji: '⚡️', text: 'Energy', top: '22%', left: '5%' },
+export const goals = [
+    { id: 'sleep', emoji: '🛌', text: 'Sleep', top: '5%', left: '15%' },
+    { id: 'mood', emoji: '😌', text: 'Mood', top: '3%', right: '12%' },
+    { id: 'energy', emoji: '⚡️', text: 'Energy', top: '17%', left: '0' },
     { id: 'nervous', emoji: '💡', text: 'Nervous System', top: '22%', right: '5%' },
-    { id: 'cognition', emoji: '🧠', text: 'Cognition', top: '34%', left: '10%' },
+    { id: 'cognition', emoji: '🧠', text: 'Cognition', top: '32%', left: '1%' },
     { id: 'stress', emoji: '🧘', text: 'Stress', top: '34%', right: '15%' },
-    { id: 'heart', emoji: '❤️‍🩹', text: 'Heart Health', top: '70%', left: '10%' },
-    { id: 'endurance', emoji: '🏃', text: 'Endurance', top: '70%', right: '10%' },
-    { id: 'immunity', emoji: '🛡️', text: 'Immunity', top: '82%', left: '15%' },
-    { id: 'lung', emoji: '🫁', text: 'Lung Capacity', top: '82%', right: '15%' },
+    { id: 'heart', emoji: '❤️‍🩹', text: 'Heart Health', top: '70%', left: '2%' },
+    { id: 'endurance', emoji: '🏃', text: 'Endurance', top: '75%', right: '5%' },
+    { id: 'immunity', emoji: '🛡️', text: 'Immunity', top: '82%', left: '0%' },
+    { id: 'lung', emoji: '🫁', text: 'Lung Capacity', top: '89%', right: '5%' },
 ];
+
+
+
+export const selectableGoalsData = [
+    { id: 'sleep', emoji: '🛌', text: 'Better Sleep' },
+    { id: 'stress', emoji: '😟', text: 'Stress or Anxiety' },
+    { id: 'mood', emoji: '📈', text: 'Improve My Mood' },
+    { id: 'energy', emoji: '⚡️', text: 'Energy & Focus' },
+    { id: 'health', emoji: '💖', text: 'Overall Health' },
+];
+
+
+export const textStepsContent = [
+    {
+        line1: 'How you breathe is',
+        line2: 'essential',
+        line3: 'for unlocking a healthy\nbrain, body, and mind.',
+    },
+    {
+        line1: 'Unfortunately most of us',
+        line2: 'breathe poorly',
+        line3: 'leading to more stress,\nburnout, and restless sleep.',
+    },
+    {
+        line1: 'The good news is just',
+        line2: '5 minutes',
+        line3: 'of Breathwrk a day eliminates,\nstress, improves sleeo, \n and boosts energy.',
+    },
+    {
+        line1: 'Its not magic its',
+        line2: 'Neuroscience',
+        line3: 'Breathwrk rewires your nervous \ system in seconds.'
+    },
+    {
+        line1: 'What are your goals \n with Breathwrk',
+        line2: '(Choose all that apply)',
+    },
+    {
+        line1: 'What are your goals \n with Breathwrk',
+        line2: '(Choose all that apply)',
+    },
+    {
+        line1: "Let's do a quick lung test \n to calibrate your app ",
+        line2: 'This will test how long you can exhale',
+    },
+];
+
+
