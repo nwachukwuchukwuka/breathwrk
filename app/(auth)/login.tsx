@@ -2,8 +2,9 @@ import Feather from '@expo/vector-icons/Feather';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
-import { ImageBackground, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Divider = ({ text }: { text: string }) => (
     <View className="flex-row items-center w-full my-6">
@@ -45,7 +46,7 @@ const LoginScreen = () => {
             <View className="flex-1 bg-black/80 p-6">
                 <SafeAreaView className="flex-1 justify-between">
                     {/* Header */}
-                    <View className="flex-row justify-between items-center">
+                    <View className="flex-row justify-between items-center mb-8">
                         <TouchableOpacity onPress={() => router.back()} className="p-2 -ml-2">
                             <Feather name="arrow-left" size={24} color="white" />
                         </TouchableOpacity>

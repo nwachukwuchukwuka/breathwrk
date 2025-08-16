@@ -31,6 +31,13 @@ export const selectableGoalsData = [
     { id: 'health', emoji: '💖', text: 'Overall Health' },
 ];
 
+export const whenToDoBreathWrk = [
+    { id: 'morning', emoji: '🛌', text: 'Morning' },
+    { id: 'afternoon', emoji: '😟', text: 'Afternoon' },
+    { id: 'night', emoji: '📈', text: 'Night' },
+
+];
+
 
 export const textStepsContent = [
     {
@@ -64,6 +71,29 @@ export const textStepsContent = [
     {
         line1: "Let's do a quick lung test \n to calibrate your app ",
         line2: 'This will test how long you can exhale',
+    },
+    {
+        line1: "Inhale fully",
+    },
+    {
+        line1: "Hold down the button to start \n timing your exhale",
+        line2: "Exhale as slowly \n as you can",
+    },
+    {
+        line1: "Your Lung Health \n Score is",
+        line2: "We'll show you what this means and how to improve it \n after sign up",
+    },
+    {
+        line1: "When would you like \n do Breathwrk",
+        line2: "(all you need is 5 minutes a day)",
+    },
+    {
+        line1: "Great! We will help you \n stay consistent",
+        line2: "Users who allow push reports 9x better results",
+    },
+    {
+        line1: "Great! We will help you \n stay consistent",
+        line2: "Users who allow push reports 9x better results",
     },
 ];
 
