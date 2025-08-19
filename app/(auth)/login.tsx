@@ -1,8 +1,8 @@
 import Feather from '@expo/vector-icons/Feather';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useRouter } from 'expo-router';
-import React, { useEffect } from 'react';
-import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ImageBackground, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -18,10 +18,11 @@ const LoginScreen = () => {
     const router = useRouter();
     const scale = useSharedValue(1)
     const opacity = useSharedValue(1)
+    const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+
 
     const animatedStyle = useAnimatedStyle(() => ({
         transform: [{ scale: scale.value }],
-        // opacity: opacity.value,
     }))
 
 
@@ -43,7 +44,7 @@ const LoginScreen = () => {
             source={require('../../assets/images/explore-bg.png')}
             className="flex-1"
         >
-            <View className="flex-1 bg-black/80 p-6">
+            <View className="flex-1 bg-black/80 p-6 pt-0">
                 <SafeAreaView className="flex-1 justify-between">
                     {/* Header */}
                     <View className="flex-row justify-between items-center mb-8">
@@ -95,7 +96,6 @@ const LoginScreen = () => {
 
                     </View>
 
-                    {/* Login Options */}
                     <View>
                         <Divider text="Continue with" />
 
@@ -110,7 +110,7 @@ const LoginScreen = () => {
 
                         <Divider text="Or" />
 
-                        <TouchableOpacity className="items-center pb-10">
+                        <TouchableOpacity onPress={() => setLoginModalVisible(true)} className="items-center pb-10">
                             <Text className="text-gray-400 text-2xl">
                                 Have another account?
                             </Text>
@@ -121,6 +121,59 @@ const LoginScreen = () => {
                     </View>
                 </SafeAreaView>
             </View>
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={isLoginModalVisible}
+                onRequestClose={() => {
+                    setLoginModalVisible(!isLoginModalVisible);
+                }}>
+                <View className="flex-1 justify-end bg-black/50">
+                    <View className="h-[92%] w-full bg-[#55584A] p-6 rounded-t-2xl">
+                        <SafeAreaView className="flex-1">
+                            {/* Modal Header */}
+                            <View className="flex-row items-center mb-24">
+                                <TouchableOpacity onPress={() => setLoginModalVisible(false)} className="absolute z-10 p-1">
+                                    <Feather name="arrow-left" size={24} color="white" />
+                                </TouchableOpacity>
+                                <Text className="text-white text-xl font-bold flex-1 text-center">Login</Text>
+                            </View>
+
+                            {/* Login Form */}
+                            <View>
+                                <TextInput
+                                    placeholder="Email"
+                                    placeholderTextColor="#D3D3D3"
+                                    className="text-white border-b border-gray-400 pb-3 mb-8 text-base"
+                                    keyboardType="email-address"
+                                    autoCapitalize="none"
+                                />
+                                <TextInput
+                                    placeholder="Password"
+                                    placeholderTextColor="#D3D3D3"
+                                    className="text-white border-b border-gray-400 pb-3 mb-8 text-base"
+                                    secureTextEntry
+                                />
+
+                                <TouchableOpacity
+                                    className="bg-white rounded-full py-4 items-center mt-10"
+                                    onPress={() => {
+                                        // Handle login logic here
+                                        setLoginModalVisible(false); // Close modal on login attempt
+                                    }}
+                                >
+                                    <Text className="text-black text-lg font-bold">Log in</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity className="items-center mt-6">
+                                    <Text className="text-white font-semibold">Reset Password</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </SafeAreaView>
+                    </View>
+                </View>
+            </Modal>
         </ImageBackground>
     );
 };

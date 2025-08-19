@@ -92,8 +92,12 @@ export const textStepsContent = [
         line2: "Users who allow push reports 9x better results",
     },
     {
-        line1: "Great! We will help you \n stay consistent",
-        line2: "Users who allow push reports 9x better results",
+        line1: "Your custom",
+        line2: "plan is ready",
+    },
+    {
+        line1: "Start the New Year with",
+        line2: "BreathWrk for FREE",
     },
 ];
 
