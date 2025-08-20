@@ -1,15 +1,33 @@
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
-import React, { useEffect } from 'react'
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+import { selectableGoalsData, textStepsContent } from '@/constants/onBoardingData';
+import * as Haptics from "expo-haptics";
+import React, { useEffect } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-type OnBoardingStepFiveProps = {
-    currentStep: number,
-}
 
-const OnBoardingStepFive: React.FC<OnBoardingStepFiveProps> = ({ currentStep }) => {
+const GoalItem = ({ item, isSelected, onPress }: { item: any, isSelected: boolean, onPress: () => void }) => (
+    <TouchableOpacity
+        onPress={onPress}
+        className={` p-5 rounded-2xl flex-row items-center mb-4  ${isSelected ? 'bg-white' : 'bg-white/10'
+            }`}
+    >
+        <Text className="text-2xl mr-4">{item.emoji}</Text>
+        <Text className={`${isSelected ? 'text-black' : 'text-white'} text-lg font-semibold`}>{item.text}</Text>
+    </TouchableOpacity>
+);
 
-    const verticalPosition = useSharedValue(40)
+type OnBoardingStepFourProps = {
+    selectedGoals: string[];
+    setSelectedGoals: React.Dispatch<React.SetStateAction<string[]>>;
+    currentStep: number;
+};
+
+
+const OnBoardingStepFive: React.FC<OnBoardingStepFourProps> = ({
+    selectedGoals, setSelectedGoals, currentStep
+}) => {
+
+    const verticalPosition = useSharedValue(20)
     const fadeValue = useSharedValue(0)
 
     const animatedStyle = useAnimatedStyle(() => ({
@@ -18,58 +36,44 @@ const OnBoardingStepFive: React.FC<OnBoardingStepFiveProps> = ({ currentStep }) 
     }))
 
     useEffect(() => {
-
-        if (currentStep === 5) {
+        if (currentStep === 4) {
             verticalPosition.value = withTiming(0, { duration: 1000 })
             fadeValue.value = withTiming(1, { duration: 1000 })
         }
 
     }, [currentStep])
 
+    const toggleGoalSelection = (id: string) => {
+        Haptics.selectionAsync();
+
+        setSelectedGoals(prev =>
+            prev.includes(id) ? prev.filter(gId => gId !== id) : [...prev, id]
+        );
+    };
 
     return (
-        <View className="flex-1 mt-12">
-            <Animated.View className='' style={animatedStyle}>
-
-                <View className="items-center">
-                    <Text className="text-white text-4xl font-bold text-center leading-tight">
-                        Breathwrk rewires your{'\n'}nervous system fast
-                    </Text>
-                </View>
-
-                {/* Chart Section */}
-                <View className="items-center mt-[80px]">
-                    <Image
-                        source={require('../../../assets/images/chart.png')}
-                        className="w-full h-72"
-                        resizeMode="contain"
-                    />
-                </View>
-            </Animated.View>
-
+        <Animated.View className="flex-1" style={animatedStyle}>
             <View>
-                <View className="bg-white/10 rounded-2xl  w-full">
-                    <Text className="text-white/80 text-xl leading-6 p-4">
-                        Heart Rate Variability (HRV) is an indicator of autonomic nervous system health, overall resilience to stress, and mood.
-                    </Text>
-                    <TouchableOpacity className="bg-white/10 rounded-b-2xl p-3 mt-4 flex-row items-center justify-center">
-                        <FontAwesome5 name="dna" size={16} color="white" />
-                        <Text className="text-white font-semibold ml-2 text-xl">Change your biology</Text>
-                    </TouchableOpacity>
-                </View>
+                <Text className="text-white text-4xl font-bold text-center mt-[60px]">
+                    {textStepsContent[4].line1}
+                </Text>
+                <Text className="text-white/70 font-bold text-base text-center mt-2">
+                    {textStepsContent[4].line2}
+                </Text>
             </View>
-            <Text className='text-white/35 text-center mt-40 text-sm' style={
-                { marginTop: Platform.select({ ios: 150, android: 110 }) } // mb-1 ≈ 4px, mb-12 ≈ 48px
-
-            }>
-                {/* <Text className='text-white/35 text-center mt-40 text-sm'> */}
-                *Based on a peer reviewed 4 weeks study of Breathwork
-            </Text>
-
-        </View >
+            <View className="mt-12">
+                {selectableGoalsData.map(goal => (
+                    <GoalItem
+                        key={goal.id}
+                        item={goal}
+                        isSelected={selectedGoals.includes(goal.id)}
+                        onPress={() => toggleGoalSelection(goal.id)}
+                    />
+                ))}
+            </View>
+        </Animated.View>
     )
 }
 
 export default OnBoardingStepFive
 
-const styles = StyleSheet.create({})

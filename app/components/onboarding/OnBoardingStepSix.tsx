@@ -1,16 +1,15 @@
-import { textStepsContent } from '@/constants/onBoardingData'
-import { Link } from 'expo-router'
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import React, { useEffect } from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 
-type OnBoardingStepSixProps = {
-    currentStep: number;
-};
+type OnBoardingStepFiveProps = {
+    currentStep: number,
+}
 
-const OnBoardingStepSix: React.FC<OnBoardingStepSixProps> = ({ currentStep }) => {
+const OnBoardingStepSix: React.FC<OnBoardingStepFiveProps> = ({ currentStep }) => {
 
-    const verticalPosition = useSharedValue(30)
+    const verticalPosition = useSharedValue(40)
     const fadeValue = useSharedValue(0)
 
     const animatedStyle = useAnimatedStyle(() => ({
@@ -20,29 +19,53 @@ const OnBoardingStepSix: React.FC<OnBoardingStepSixProps> = ({ currentStep }) =>
 
     useEffect(() => {
 
-        if (currentStep === 6) {
+        if (currentStep === 5) {
             verticalPosition.value = withTiming(0, { duration: 1000 })
             fadeValue.value = withTiming(1, { duration: 1000 })
         }
 
     }, [currentStep])
+
+
     return (
-        <View className='items-center mt-32'>
-            <Animated.View style={animatedStyle} className="items-center">
-                <View>
+        <View className="flex-1 mt-12">
+            <Animated.View className='' style={animatedStyle}>
+
+                <View className="items-center">
+                    <Text className="text-white text-4xl font-bold text-center leading-tight">
+                        Breathwrk rewires your{'\n'}nervous system fast
+                    </Text>
+                </View>
+
+                {/* Chart Section */}
+                <View className="items-center mt-[80px]">
                     <Image
-                        source={require('../../../assets/images/lungs.png')}
-                        className="w-52"
+                        source={require('../../../assets/images/chart.png')}
+                        className="w-full h-72"
                         resizeMode="contain"
                     />
                 </View>
-                <Text className="text-white text-3xl text-center font-bold">{textStepsContent[6].line1}</Text>
-                <Text className="text-white/90 text-xl font-semibold mt-10 text-center ">{textStepsContent[6].line2}</Text>
-
             </Animated.View>
-            <Link href="/" className='text-white/35 text-center text-lg underline mt-[300px]'>Setup later</Link>
 
-        </View>
+            <View>
+                <View className="bg-white/10 rounded-2xl  w-full">
+                    <Text className="text-white/80 text-xl leading-6 p-4">
+                        Heart Rate Variability (HRV) is an indicator of autonomic nervous system health, overall resilience to stress, and mood.
+                    </Text>
+                    <TouchableOpacity className="bg-white/10 rounded-b-2xl p-3 mt-4 flex-row items-center justify-center">
+                        <FontAwesome5 name="dna" size={16} color="white" />
+                        <Text className="text-white font-semibold ml-2 text-xl">Change your biology</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <Text className='text-white/35 text-center mt-40 text-sm' style={
+                { marginTop: Platform.select({ ios: 150, android: 110 }) } // mb-1 ≈ 4px, mb-12 ≈ 48px
+
+            }>
+                *Based on a peer reviewed 4 weeks study of Breathwork
+            </Text>
+
+        </View >
     )
 }
 

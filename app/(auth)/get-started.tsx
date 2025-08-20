@@ -59,10 +59,7 @@ const OnboardingScreen = () => {
 
     if (isShowingSplash) {
         return (
-            // <ImageBackground
-            //     source={require('../../assets/images/explore-bg-min.png')}
-            //     className="flex-1"
-            // >
+
             <LinearGradient
                 colors={gradientColors}
                 start={{ x: 0, y: 0 }}
@@ -75,7 +72,6 @@ const OnboardingScreen = () => {
                 </View>
             </LinearGradient>
 
-            // </ImageBackground>
         );
     }
 

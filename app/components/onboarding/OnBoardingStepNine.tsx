@@ -1,119 +1,147 @@
 import { textStepsContent } from '@/constants/onBoardingData';
-import LottieView from 'lottie-react-native';
-import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
-import Animated, {
-    useAnimatedProps,
-    useSharedValue,
-    withTiming,
-} from 'react-native-reanimated';
-import Svg, { Circle } from 'react-native-svg';
-
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+import * as Haptics from "expo-haptics";
+import React, { useEffect, useRef } from 'react';
+import { Image, Pressable, Text, View } from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 
-const CircularProgress = ({
-    size = 150,
-    strokeWidth = 12,
-    backgroundColor = 'rgba(255, 255, 255, 0.25)',
-    progressColor = '#FFFFFF',
-    animatedProgress,
-    children,
-}) => {
-    const center = size / 2;
-    const radius = (size - strokeWidth) / 2;
-    const circumference = 2 * Math.PI * radius;
-
-    const animatedProps = useAnimatedProps(() => {
-        const progressOffset = circumference - (circumference * animatedProgress.value) / 100;
-        return {
-            strokeDashoffset: progressOffset,
-        };
-    });
-
-    return (
-        <View style={{ width: size, height: size, justifyContent: 'center', alignItems: 'center' }}>
-            <Svg width={size} height={size}>
-                {/* Background circle remains the same */}
-                <Circle cx={center} cy={center} r={radius} stroke={backgroundColor} strokeWidth={strokeWidth} fill="none" />
-
-                <AnimatedCircle
-                    cx={center}
-                    cy={center}
-                    r={radius}
-                    stroke={progressColor}
-                    strokeWidth={strokeWidth}
-                    fill="none"
-                    strokeDasharray={circumference}
-                    strokeLinecap="round"
-                    originX={center}
-                    originY={center}
-                    rotation="-90"
-                    animatedProps={animatedProps}
-                />
-            </Svg>
-            {children && <View style={{ position: 'absolute' }}>{children}</View>}
-        </View>
-    );
+type OnBoardingStepEightProps = {
+    isHolding: boolean;
+    setIsHolding: React.Dispatch<React.SetStateAction<boolean>>;
+    holdDuration: number;
+    setHoldDuration: React.Dispatch<React.SetStateAction<number>>;
+    setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+    currentStep: number;
 };
 
+const OnBoardingStepNine: React.FC<OnBoardingStepEightProps> = ({
+    isHolding,
+    setIsHolding,
+    setHoldDuration,
+    holdDuration,
+    setCurrentStep,
+    currentStep
+}) => {
 
-function OnBoardingStepNine({ holdDuration, isHolding }) {
-    const [isAnimationComplete, setIsAnimationComplete] = useState(false);
 
-    const MAX_HOLD_DURATION = 3000;
+    const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-    const progress = useSharedValue(0);
+
 
     useEffect(() => {
-        progress.value = withTiming(80, { duration: MAX_HOLD_DURATION });
-    }, []);
+        if (currentStep === 7) {
+            const timer = setTimeout(() => {
+                setCurrentStep(8);
+            }, 2000);
 
+
+            return () => clearTimeout(timer);
+        }
+    }, [currentStep]);
+
+    // const handlePressIn = () => {
+    //     Haptics.selectionAsync();
+
+    //     setIsHolding(true);
+    //     setHoldDuration(0);
+    //     intervalRef.current = setInterval(() => {
+    //         setHoldDuration(prevDuration => prevDuration + 10);
+
+    //     }, 10);
+    // };
+
+    const handlePressIn = () => {
+        Haptics.selectionAsync();
+
+        setIsHolding(true);
+        setHoldDuration(0);
+
+        intervalRef.current = setInterval(() => {
+            setHoldDuration(prevDuration => {
+                const newDuration = prevDuration + 10;
+
+                if (newDuration % 1000 === 0) {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                }
+
+                return newDuration;
+            });
+        }, 10);
+    };
+
+    const handlePressOut = () => {
+        setIsHolding(false);
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+
+        if (holdDuration > 100) {
+            setCurrentStep(9);
+        }
+    };
+
+    const fadeValue = useSharedValue(0)
+
+    const animatedStyle = useAnimatedStyle(() => ({
+        opacity: fadeValue.value
+    }))
+
+    useEffect(() => {
+
+        if (currentStep === 8) {
+            fadeValue.value = withTiming(1, { duration: 1000 })
+        }
+
+    }, [currentStep])
 
 
 
     return (
-        <Animated.View className="absolute items-center top-[70px]">
-            <View className='absolute top-0 items-center'>
-                <Text className="text-white text-7xl font-bold">
-                    {(holdDuration / 1000).toFixed(1)}
-                </Text>
-                <Text className="text-white text-4xl font-semibold">seconds</Text>
-            </View>
-
-            {!isHolding && (
-                <View className='flex-1 absolute '>
-                    <LottieView style={{ height: 800, width: 800 }} source={require('../../../assets/images/Confetti.json')} autoPlay loop={false} />
+        <View className="absolute items-center bottom-32">
+            {isHolding && (
+                <View className='absolute top-[100px] items-center'>
+                    <Text className="text-white text-7xl font-bold  ">
+                        {(holdDuration / 1000).toFixed(1)}
+                    </Text>
+                    <Text className="text-white text-4xl font-semibold">seconds</Text>
                 </View>
             )}
+            <View>
 
-            <Text className="text-white text-3xl text-center font-semibold top-48">{textStepsContent[9].line1}</Text>
+                {isHolding && <Image
+                    source={require('../../../assets/images/open-mouth.png')}
+                    className="w-14 "
+                    resizeMode="contain"
+                />}
+                {!isHolding && <Animated.View style={animatedStyle}>
+                    <Image
+                        source={require('../../../assets/images/tap.png')}
+                        className="w-14 "
+                        resizeMode="contain"
+                    />
+                </Animated.View>}
 
-            <View className='top-56'>
-                <CircularProgress
-                    size={150}
-                    strokeWidth={12}
-                    animatedProgress={progress}
-                    backgroundColor="rgba(255, 255, 255, 0.25)"
-                    progressColor="white"
-                >
-                    <View className='bg-white/10 rounded-full w-[128px] h-[128px] items-center justify-center'>
-                        <Text className='text-white font-bold text-6xl'>51</Text>
-                        {/* {isAnimationComplete && ( // <-- WRAP the text in this condition
-                            <Text className='text-white font-bold text-6xl'>51</Text>
-                        )} */}
-                    </View>
-                </CircularProgress>
             </View>
+            {isHolding ? <Text className="text-white text-3xl text-center font-semibold -mt-[200px]">{textStepsContent[8].line2}</Text>
+                : <Animated.Text style={animatedStyle} className="text-white text-3xl text-center font-semibold -mt-[200px]">{textStepsContent[8].line1}</Animated.Text>
+            }
 
-            <Text className="text-white/40 text-md text-center font-bold mt-[220px]">{textStepsContent[9].line2}</Text>
-            <Text className="text-white/50 text-lg text-center font-semibold mt-[60px]">Want to retest? click here</Text>
+            <Pressable
+                onPressIn={handlePressIn}
+                onPressOut={handlePressOut}
+                className='bg-white rounded-full w-60 h-60 items-center mt-24'                >
+                <Image
+                    source={require('../../../assets/images/fingerprint-scan.png')}
+                    className="w-[120px] h-full"
+                    resizeMode="contain"
+                />
+                <Text className="text-black/40 text-md font-bold -mt-12">Hold here</Text>
+            </Pressable>
+        </View>
 
-        </Animated.View>
-    );
+
+    )
 }
 
-export default OnBoardingStepNine;
-
-
+export default OnBoardingStepNine
 
