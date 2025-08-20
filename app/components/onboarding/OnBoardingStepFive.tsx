@@ -1,9 +1,13 @@
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import React, { useEffect } from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 
-const OnBoardingStepFive = ({ currentStep }) => {
+type OnBoardingStepFiveProps = {
+    currentStep: number,
+}
+
+const OnBoardingStepFive: React.FC<OnBoardingStepFiveProps> = ({ currentStep }) => {
 
     const verticalPosition = useSharedValue(40)
     const fadeValue = useSharedValue(0)
@@ -54,9 +58,15 @@ const OnBoardingStepFive = ({ currentStep }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <Text className='text-white/35 text-center mt-40 text-sm'>*Based on a peer reviewed 4 weeks study of Breathwork</Text>
+            <Text className='text-white/35 text-center mt-40 text-sm' style={
+                { marginTop: Platform.select({ ios: 150, android: 110 }) } // mb-1 ≈ 4px, mb-12 ≈ 48px
 
-        </View>
+            }>
+                {/* <Text className='text-white/35 text-center mt-40 text-sm'> */}
+                *Based on a peer reviewed 4 weeks study of Breathwork
+            </Text>
+
+        </View >
     )
 }
 

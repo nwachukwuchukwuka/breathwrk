@@ -1,56 +1,3 @@
-// import { textStepsContent } from '@/constants/onBoardingData'
-// import LottieView from 'lottie-react-native'
-// import React from 'react'
-// import { Text, View } from 'react-native'
-// import Animated from 'react-native-reanimated'
-
-// function OnBoardingStepNine({ holdDuration, isHolding }) {
-
-//     return (
-//         <Animated.View className="absolute items-center top-[70px]">
-//             <View className='absolute top-0 items-center'>
-//                 <Text className="text-white text-7xl font-bold">
-//                     {(holdDuration / 1000).toFixed(1)}
-
-//                 </Text>
-//                 <Text className="text-white text-4xl font-semibold">seconds</Text>
-//             </View>
-
-//             {!isHolding && (
-//                 <View className='flex-1 absolute '>
-//                     <LottieView style={{ height: 800, width: 800 }} source={require('../../../assets/images/Confetti.json')} autoPlay loop={false} />
-//                 </View>
-//             )}
-
-
-//             <Text className="text-white text-3xl text-center font-semibold top-48">{textStepsContent[9].line1}</Text>
-//             <View className='bg-white/25 rounded-full w-[150px] h-[150px] justify-center items-center top-56'>
-//                 <View className='w-8 h-8 bg-blue-400 border-1 border-red-800 '>
-//                 {/* <View className='bg-white/10 rounded-full w-[80px] h-[80px]  items-center border-1 border-red-800 '> */}
-//                     <Text>He</Text>
-//                 </View>
-//             </View>
-
-//             <Text className="text-white text-md text-center font-bold mt-[220px]">{textStepsContent[9].line2}</Text>
-//             <Text className="text-white/50 text-lg text-center font-semibold mt-[60px]">Want to retest? click here</Text>
-
-//         </Animated.View>
-//     )
-// }
-
-// export default OnBoardingStepNine
-
-
-
-
-
-
-
-
-
-
-
-
 import { textStepsContent } from '@/constants/onBoardingData';
 import LottieView from 'lottie-react-native';
 import React, { useEffect, useState } from 'react';
@@ -167,3 +114,6 @@ function OnBoardingStepNine({ holdDuration, isHolding }) {
 }
 
 export default OnBoardingStepNine;
+
+
+

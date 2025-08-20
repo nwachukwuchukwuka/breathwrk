@@ -20,14 +20,19 @@ const GoalItem = ({ item, isSelected, onPress }: { item: any, isSelected: boolea
 );
 
 
-const OnBoardingStepTen = ({ showThanks, setShowThanks, setCurrentStep, currentStep }) => {
-    const [selectedTime, setSelectedTime] = useState<string[]>([]);
+type OnBoardingStepTenProps = {
+    showThanks: boolean;
+    setShowThanks: (value: boolean) => void;
+    currentStep: number;
+    setCurrentStep: (step: number) => void;
+};
 
-    // const toggleGoalSelection = (id: string) => {
-    //     setSelectedTime(prev =>
-    //         prev.includes(id) ? prev.filter(gId => gId !== id) : [...prev, id]
-    //     );
-    // };
+const OnBoardingStepTen: React.FC<OnBoardingStepTenProps> = ({
+    showThanks, setShowThanks, setCurrentStep, currentStep
+}) => {
+    // const [selectedTime, setSelectedTime] = useState<string[]>([]);
+
+    const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
     const toggleGoalSelection = (id: string) => {
         Haptics.selectionAsync();
@@ -77,7 +82,9 @@ const OnBoardingStepTen = ({ showThanks, setShowThanks, setCurrentStep, currentS
                         <GoalItem
                             key={goal.id}
                             item={goal}
-                            isSelected={selectedTime.includes(goal.id)}
+                            // isSelected={selectedTime.includes(goal.id)}
+                            // onPress={() => toggleGoalSelection(goal.id)}
+                            isSelected={selectedTime === goal.id} // single selection
                             onPress={() => toggleGoalSelection(goal.id)}
                         />
                     ))}
@@ -90,7 +97,7 @@ const OnBoardingStepTen = ({ showThanks, setShowThanks, setCurrentStep, currentS
                 </View>
             )}
 
-            {selectedTime.length > 0 && (
+            {selectedTime && (
                 <View className='items-center'>
                     <Pressable
                         onPress={handleHighFive}

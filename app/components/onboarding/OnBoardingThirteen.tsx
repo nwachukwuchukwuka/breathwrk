@@ -76,7 +76,11 @@ import React, { useEffect } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 
-const OnBoardingThirteen = ({ currentStep }) => {
+type OnBoardingThirteenProps = {
+    currentStep: number,
+}
+
+const OnBoardingThirteen: React.FC<OnBoardingThirteenProps> = ({ currentStep }) => {
     const fadeValue = useSharedValue(0)
 
     const badges = [

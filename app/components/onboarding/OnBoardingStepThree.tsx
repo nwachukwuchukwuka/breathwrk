@@ -1,6 +1,6 @@
 import { textStepsContent } from '@/constants/onBoardingData'
 import React, { useEffect } from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, Platform, StyleSheet, Text, View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 
 const OnBoardingStepThree = () => {
@@ -50,7 +50,7 @@ const OnBoardingStepThree = () => {
                     </View> */}
                 </View>
                 <View className='flex-row gap-6'>
-                {/* <View className='flex-row gap-6 mt-[100px]'> */}
+                    {/* <View className='flex-row gap-6 mt-[100px]'> */}
                     <View
                         className={` rounded-full py-1 px-3 flex-row items-center border bg-white/10 border-white/10`}
                     >
@@ -70,7 +70,11 @@ const OnBoardingStepThree = () => {
                     {textStepsContent[3].line3}
                 </Text>
             </Animated.View>
-            <Animated.View style={dispayStepFourIcons} className='mb-12'>
+            <Animated.View style={[
+                dispayStepFourIcons,
+                { marginBottom: Platform.select({ ios: 44, android: 10 }) } // mb-1 ≈ 4px, mb-12 ≈ 48px
+            ]} >
+                {/* <Animated.View style={dispayStepFourIcons} className='mb-12'> */}
                 <Image
                     source={require('../../../assets/images/shield.png')}
                     className="w-[140px] h-[140px]"

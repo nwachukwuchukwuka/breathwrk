@@ -4,7 +4,11 @@ import React, { useEffect } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 
-const OnBoardingStepSix = ({ currentStep }) => {
+type OnBoardingStepSixProps = {
+    currentStep: number;
+};
+
+const OnBoardingStepSix: React.FC<OnBoardingStepSixProps> = ({ currentStep }) => {
 
     const verticalPosition = useSharedValue(30)
     const fadeValue = useSharedValue(0)
