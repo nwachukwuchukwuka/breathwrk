@@ -26,7 +26,8 @@ const OnboardingScreen = () => {
     const [isShowingSplash, setIsShowingSplash] = useState(true);
     const [getStarted, setGetStarted] = useState(false)
 
-    const display = useSharedValue(0.9)
+    const display = useSharedValue(0)
+    // const display = useSharedValue(0.9)
 
     const animatedStyle = useAnimatedStyle(() => ({
         opacity: display.value
@@ -40,7 +41,7 @@ const OnboardingScreen = () => {
         const timer = setTimeout(() => {
             setIsShowingSplash(false);
             display.value = withTiming(1, { duration: 1000 })
-        }, 1000);
+        }, 4000);
 
         return () => clearTimeout(timer);
     }, []);

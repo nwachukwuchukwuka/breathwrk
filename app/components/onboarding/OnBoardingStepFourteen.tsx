@@ -80,7 +80,7 @@ type OnBoardingThirteenProps = {
     currentStep: number,
 }
 
-const OnBoardingThirteen: React.FC<OnBoardingThirteenProps> = ({ currentStep }) => {
+const OnBoardingStepFourteen: React.FC<OnBoardingThirteenProps> = ({ currentStep }) => {
     const fadeValue = useSharedValue(0)
 
     const badges = [
@@ -161,6 +161,6 @@ const OnBoardingThirteen: React.FC<OnBoardingThirteenProps> = ({ currentStep }) 
     )
 }
 
-export default OnBoardingThirteen
+export default OnBoardingStepFourteen
 
 const styles = StyleSheet.create({})

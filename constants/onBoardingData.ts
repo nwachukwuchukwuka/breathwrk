@@ -9,17 +9,41 @@ export type Goal = {
 }
 
 export const goals = [
-    { id: 'sleep', emoji: '🛌', text: 'Sleep', top: '5%', left: '15%' },
-    { id: 'mood', emoji: '😌', text: 'Mood', top: '3%', right: '12%' },
-    { id: 'energy', emoji: '⚡️', text: 'Energy', top: '17%', left: '0' },
-    { id: 'nervous', emoji: '💡', text: 'Nervous System', top: '22%', right: '5%' },
-    { id: 'cognition', emoji: '🧠', text: 'Cognition', top: '32%', left: '1%' },
-    { id: 'stress', emoji: '🧘', text: 'Stress', top: '34%', right: '15%' },
-    { id: 'heart', emoji: '❤️‍🩹', text: 'Heart Health', top: '70%', left: '2%' },
-    { id: 'endurance', emoji: '🏃', text: 'Endurance', top: '75%', right: '5%' },
-    { id: 'immunity', emoji: '🛡️', text: 'Immunity', top: '82%', left: '0%' },
-    { id: 'lung', emoji: '🫁', text: 'Lung Capacity', top: '89%', right: '5%' },
+    { id: 'sleep', emoji: '🛌', text: 'Sleep', top: '5%', left: '15%', rotation: -6, secondTop: 400, secondLeft: 30  },
+    { id: 'mood', emoji: '😌', text: 'Mood', top: '3%', right: '12%', rotation: 5, secondTop: 410, secondLeft: 50  },
+    { id: 'energy', emoji: '⚡️', text: 'Energy', top: '17%', left: '0', rotation: -30, secondTop: 390, secondLeft: -40 },
+    { id: 'nervous', emoji: '💡', text: 'Nervous System', top: '22%', right: '5%', rotation: 5, secondTop: 335, secondLeft: 40  },
+    { id: 'cognition', emoji: '🧠', text: 'Cognition', top: '32%', left: '1%', rotation: -8, secondTop: 310, secondLeft: 50  },
+    { id: 'stress', emoji: '🧘', text: 'Stress', top: '34%', right: '15%', rotation: -60, secondTop: 350, secondLeft: -50  },
+    { id: 'heart', emoji: '❤️‍🩹', text: 'Heart Health', top: '70%', left: '2%', rotation: -10, secondTop: 128, secondLeft: -30  },
+    { id: 'endurance', emoji: '🏃', text: 'Endurance', top: '75%', right: '5%', rotation: 10, secondTop: 70, secondLeft: 50  },
+    { id: 'immunity', emoji: '🛡️', text: 'Immunity', top: '82%', left: '0%', rotation: -7, secondTop: 99, secondLeft: 0 },
+    { id: 'lung', emoji: '🫁', text: 'Lung Capacity', top: '89%', right: '5%', rotation: 10, secondTop: 40, secondLeft: 50 },
 ];
+// const goals = [
+//     { id: 1, emoji: '⚡️', text: 'Energy', top: 380, left: 20, rotation: -15 },
+//     { id: 2, emoji: '🛌', text: 'Sleep', top: 350, left: 150, rotation: 5 },
+//     { id: 3, emoji: '😊', text: 'Mood', top: 360, right: 40, rotation: 10 },
+//     { id: 4, emoji: '🧠', text: 'Cognition', top: 430, left: 90, rotation: 8 },
+//     { id: 5, emoji: '💡', text: 'Nervous System', top: 410, right: 10, rotation: -8 },
+//     { id: 6, emoji: '💪', text: 'Endurance', top: 460, right: 100, rotation: 12 },
+//     { id: 7, emoji: '❤️', text: 'Heart Health', top: 480, left: 15, rotation: 10 },
+//     { id: 8, emoji: '🛡️', text: 'Immunity', top: 530, left: 80, rotation: -5 },
+//     { id: 9, emoji: '😮‍💨', text: 'Lung Capacity', top: 510, right: 20, rotation: -10 },
+//     { id: 10, emoji: '🧘', text: 'Stress', top: 465, left: 190, rotation: -18 },
+// ];
+// export const goals = [
+//     { id: 'sleep', emoji: '🛌', text: 'Sleep', top: '5%', left: '15%' },
+//     { id: 'mood', emoji: '😌', text: 'Mood', top: '3%', right: '12%' },
+//     { id: 'energy', emoji: '⚡️', text: 'Energy', top: '17%', left: '0' },
+//     { id: 'nervous', emoji: '💡', text: 'Nervous System', top: '22%', right: '5%' },
+//     { id: 'cognition', emoji: '🧠', text: 'Cognition', top: '32%', left: '1%' },
+//     { id: 'stress', emoji: '🧘', text: 'Stress', top: '34%', right: '15%' },
+//     { id: 'heart', emoji: '❤️‍🩹', text: 'Heart Health', top: '70%', left: '2%' },
+//     { id: 'endurance', emoji: '🏃', text: 'Endurance', top: '75%', right: '5%' },
+//     { id: 'immunity', emoji: '🛡️', text: 'Immunity', top: '82%', left: '0%' },
+//     { id: 'lung', emoji: '🫁', text: 'Lung Capacity', top: '89%', right: '5%' },
+// ];
 
 
 
