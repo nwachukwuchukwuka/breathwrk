@@ -83,7 +83,7 @@ const OnBoardingStepEleven: React.FC<OnBoardingStepTenProps> = ({
                             item={goal}
                             // isSelected={selectedTime.includes(goal.id)}
                             // onPress={() => toggleGoalSelection(goal.id)}
-                            isSelected={selectedTime === goal.id} // single selection
+                            isSelected={selectedTime === goal.id}
                             onPress={() => toggleGoalSelection(goal.id)}
                         />
                     ))}
@@ -97,7 +97,7 @@ const OnBoardingStepEleven: React.FC<OnBoardingStepTenProps> = ({
             )}
 
             {selectedTime && (
-                <View className='items-center'>
+                <TouchableOpacity className='items-center'>
                     <Pressable
                         onPress={handleHighFive}
                         className='bg-white rounded-full w-40 h-40 items-center mt-24'>
@@ -110,7 +110,21 @@ const OnBoardingStepEleven: React.FC<OnBoardingStepTenProps> = ({
                     <Text className="text-white text-md font-bold mt-2">High five to commit</Text>
 
                     <Text className="text-white/20 text-md font-bold mt-4">Press here</Text>
-                </View>
+                </TouchableOpacity>
+                // <View className='items-center'>
+                //     <Pressable
+                //         onPress={handleHighFive}
+                //         className='bg-white rounded-full w-40 h-40 items-center mt-24'>
+                //         <Image
+                //             source={require('../../../assets/images/high-five.png')}
+                //             className="w-[80px] h-full"
+                //             resizeMode="contain"
+                //         />
+                //     </Pressable>
+                //     <Text className="text-white text-md font-bold mt-2">High five to commit</Text>
+
+                //     <Text className="text-white/20 text-md font-bold mt-4">Press here</Text>
+                // </View>
             )}
 
         </View>

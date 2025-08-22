@@ -1,8 +1,12 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import React from 'react';
-import { ImageBackground, StatusBar, Text, View } from 'react-native';
+import * as Haptics from "expo-haptics";
+import React, { useState } from 'react';
+import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AudioSettingsModal from '../components/explore/breathingExercise/AudioSettingsModal';
+import DurationSelectorModal from '../components/explore/breathingExercise/DurationSelectorModal';
 import '../globals.css';
 
 type DayCircleProps = {
@@ -22,6 +26,17 @@ const DayCircle: React.FC<DayCircleProps> = ({ day, isActive }) => (
 
 export default function HomeScreen() {
   const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  const [isFavorited, setIsFavorited] = useState(false);
+  const [isPhone, setIsPhone] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAudioModalVisible, setAudioModalVisible] = useState(false);
+  const [isDurationModalVisible, setDurationModalVisible] = useState(false);
+  const [currentDuration, setCurrentDuration] = useState(5);
+
+  const handlePhoneToggle = () => {
+    Haptics.selectionAsync();
+    setIsPhone(previousState => !previousState);
+  };
 
   return (
     <ImageBackground
@@ -30,16 +45,15 @@ export default function HomeScreen() {
       className='flex-1'
     >
       <View className='bg-black/40 flex-1'>
-        <StatusBar barStyle="light-content"
-        />
-        <View className="flex-1 px-5 justify-between py-2 pt-[70px]">
+
+        <SafeAreaView className="flex-1 px-5 justify-between py-2 pt-">
           {/* Header */}
           <View className="flex-row justify-between items-center">
             <View className="flex-row items-center">
               <FontAwesome5 name="fire" size={24} color="white" />
               <Text className="text-white ml-2 font-semibold">0</Text>
             </View>
-            <Text className="text-white text-lg font-medium">breathwork</Text>
+            <Text className="text-white text-2xl font-bold tracking-wider">breathwork</Text>
             <View className="flex-row items-center">
               <FontAwesome5 name="user-alt" size={20} color="white" />
               <Text className="text-white ml-2 font-semibold">377</Text>
@@ -58,7 +72,7 @@ export default function HomeScreen() {
               Welcome back. This evening's exercise will help you stay calm and collected
             </Text>
 
-            <View className="flex-row items-center justify-between w-4/5">
+            {/* <View className="flex-row items-center justify-between w-4/5">
               <View className="p-2.5 rounded-full bg-white/10">
                 <MaterialCommunityIcons name="vibrate" size={24} color="white" />
               </View>
@@ -70,17 +84,63 @@ export default function HomeScreen() {
               <View className="p-2.5 rounded-full bg-white/10">
                 <FontAwesome name="exchange" size={22} color="white" />
               </View>
-            </View>
+            </View> */}
 
-            <View className="mt-[25px] bg-white/5 rounded-[20px] py-[13px] px-[40px] border ">
+            {/* <View className="mt-[25px] bg-white/5 rounded-[20px] py-[13px] px-[40px] border ">
               <Text className="text-white text-lg">5 min</Text>
+            </View> */}
+
+            {/* BOTTOM CONTROLS */}
+            <View className="items-center ">
+              <View className="flex-row items-center justify-between w-full px-6">
+                <TouchableOpacity className="bg-white/5 w-16 h-16 rounded-full justify-center items-center border border-white/5" onPress={handlePhoneToggle}>
+                  <MaterialCommunityIcons name={isPhone ? "vibrate" : "vibrate-off"} size={24} color="white" />
+                </TouchableOpacity>
+
+                <View className="shadow-xl shadow-white/60">
+                  <View className="w-[140px] h-[140px] rounded-full bg-white justify-center items-center">
+                    <Text className="text-black text-[28px] font-bold">Start</Text>
+                  </View>
+                </View>
+                <TouchableOpacity className="bg-white/5 w-16 h-16 rounded-full justify-center items-center border border-white/5" onPress={() => {
+                  Haptics.selectionAsync();
+                  setAudioModalVisible(true)
+                }}
+                >
+                  <FontAwesome name="exchange" size={22} color="white" />
+                </TouchableOpacity>
+              </View>
+
+
+
+              <TouchableOpacity
+                onPress={() => {
+                  setDurationModalVisible(true)
+                  Haptics.selectionAsync();
+                }}
+                className="mt-[25px] bg-white/5 rounded-[25px] py-[12px] px-[40px] border border-white/5"
+              >
+                <Text className="text-white text-lg">{currentDuration} min</Text>
+              </TouchableOpacity>
             </View>
+            <AudioSettingsModal
+              visible={isAudioModalVisible}
+              onClose={() => setAudioModalVisible(false)}
+            />
+            <DurationSelectorModal
+              visible={isDurationModalVisible}
+              onClose={() => setDurationModalVisible(false)}
+              initialDuration={currentDuration}
+              onSave={(newDuration) => {
+                setCurrentDuration(newDuration);
+              }}
+            />
           </View>
 
           <View />
-        </View>
+        </SafeAreaView>
       </View>
 
-    </ImageBackground>
+    </ImageBackground >
   );
 }

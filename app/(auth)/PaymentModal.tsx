@@ -15,7 +15,12 @@ const testimonials = [
 
 const logos = ['GQ', 'Forbes', 'USA TODAY', 'WSJ', 'healthline', 'Bloomberg', 'REFINERY29'];
 
-const PaymentModal = ({ visible, onClose }) => {
+type PaymentModalProps = {
+    visible: boolean;
+    onClose: () => void;
+};
+
+const PaymentModal: React.FC<PaymentModalProps> = ({ visible, onClose }) => {
     const [selectedPlan, setSelectedPlan] = useState('annual');
 
     return (

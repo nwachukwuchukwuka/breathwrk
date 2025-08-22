@@ -160,7 +160,7 @@ const BreathingExerciseDetailScreen = () => {
 
                     {/* BOTTOM CONTROLS */}
                     <View className="items-center ">
-
+ 
                         <View className="flex-row items-center justify-between w-full px-6">
 
 

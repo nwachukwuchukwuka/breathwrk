@@ -1,4 +1,5 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Link } from 'expo-router';
 import React from 'react';
 import { FlatList, Image, ImageBackground, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -20,8 +21,8 @@ const breathingExercises = [
 
 
 const dailyClasses = [
-    { id: '1', title: 'Wake Up', duration: '2 mins', image: 'https://plus.unsplash.com/premium_photo-1701519605767-4e007ae06aaa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z3JhZGllbnQlMjBncmVlbnxlbnwwfHwwfHx8MA%3D%3D' },
-    { id: '2', title: 'Calm Down', duration: '6 mins', image: 'https://images.unsplash.com/photo-1508615039623-a25605d2b022' },
+    { id: '1', title: 'Wake Up', duration: '2 mins', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_HiiM4gsPWcXp7OpIXxqYekfYMpB4jALVKQ&s' },
+    { id: '2', title: 'Calm Down', duration: '6 mins', image: 'https://t3.ftcdn.net/jpg/04/56/00/16/360_F_456001627_vYt7ZFjxEQ1sshme67JAXorKRPo8gsfN.jpg' },
     { id: '3', title: 'Calm Down', duration: '6 mins', image: 'https://images.unsplash.com/photo-1696345592145-d7286506a6ca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z3JhZGllbnQlMjBncmVlbnxlbnwwfHwwfHx8MA%3D%3D' },
     { id: '4', title: 'Calm Down', duration: '6 mins', image: 'https://images.unsplash.com/photo-1579546928937-641f7ac9bced?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGdyYWRpZW50JTIwZ3JlZW58ZW58MHx8MHx8fDA%3D' },
 ];
@@ -63,7 +64,7 @@ const BreathingExerciseChip = ({ item }: { item: BreathingExercise }) => (
     }} asChild>
         <TouchableOpacity className='mr-3'>
             <View
-                className='bg-white/20 flex-row items-center p-3 rounded-full'>
+                className='bg-white/10 flex-row items-center p-3 rounded-full'>
                 {item.emoji ? (
                     <Text className='text-lg mr-2'>{item.emoji}</Text>
                 ) : (
@@ -133,16 +134,27 @@ const GuidedClassCard = ({ item }: { item: typeof guidedClasses[0] }) => (
 
 )
 
+const gradientColors = ['#1b2f23', '#2d5a3d', '#3d7c56'] as const;
+// const gradientColors = ['#004d00', '#006400', '#00a000'] as const;
+
 
 
 
 const ExploreScreen = () => {
     return (
-        <ImageBackground
-            source={require('../../assets/images/explore-bg.png')}
-            resizeMode="cover"
+        // <ImageBackground
+        //     source={require('../../assets/images/explore-bg.png')}
+        //     resizeMode="cover"
+        // >
+
+        <LinearGradient
+            colors={gradientColors}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{ flex: 1 }}
         >
-            <View className='bg-black/70'>
+
+            <View className='bg-black/60'>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View className="pt-[70px] pb-10">
                         <Text className='text-white text-center font-bold text-2xl mb-[60px]'>breathWrk</Text>
@@ -199,8 +211,10 @@ const ExploreScreen = () => {
 
                 </ScrollView>
             </View>
+        </LinearGradient>
 
-        </ImageBackground>
+
+        // </ImageBackground>
     )
 }
 

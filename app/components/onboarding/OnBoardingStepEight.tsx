@@ -1,7 +1,7 @@
 import { textStepsContent } from '@/constants/onBoardingData';
 import { Audio } from 'expo-av';
 import React, { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, Vibration, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 
@@ -35,6 +35,7 @@ const OnBoardingStepEight = ({ currentStep }: { currentStep: number }) => {
     }
 
     useEffect(() => {
+        Vibration.vibrate(3000);
         playSound();
         return sound
             ? () => {
@@ -43,6 +44,8 @@ const OnBoardingStepEight = ({ currentStep }: { currentStep: number }) => {
             }
             : undefined;
     }, []);
+
+
 
     return (
         <Animated.View style={animatedStyle} className=" mt-80 items-center">

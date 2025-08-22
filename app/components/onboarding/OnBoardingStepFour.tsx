@@ -18,7 +18,6 @@ const OnBoardingStepFour = () => {
     }))
 
     const slideInBrain = useAnimatedStyle(() => ({
-        // transform: [{ translateY: verticalPositionFouBrain.value }],
         opacity: fadeValueBrain.value
     }))
 

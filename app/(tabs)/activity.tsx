@@ -20,10 +20,12 @@ const Header = ({ onMenuPress, onBellPress }: { onMenuPress: () => void, onBellP
 const ProfileStats = () => (
   <View className=" mt-6">
     <View className="flex-row items-center">
-      <Image
-        source={{ uri: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500' }} // Placeholder image
-        className="w-20 h-28 rounded-full"
-      />
+      <TouchableOpacity>
+        <Image
+          source={{ uri: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500' }} 
+          className="w-20 h-28 rounded-full"
+        />
+      </TouchableOpacity>
       {/* Stats and Level Progress */}
       <View className="flex-1 ml-4">
         <View className="flex-row justify-around">
@@ -77,15 +79,7 @@ const BreathScore = () => (
             fill="none"
             transform="translate(0,0) scale(1) rotate(20 50 50)"
           />
-          {/* The second, thinner wavy line, scaled up and rotated differently */}
-          {/* <Path
-                d="M 50,5 A 45,45 0 1 1 49.9,5.001 M 50,5 C 60,15 60,35 50,45 C 40,35 40,15 50,5"
-                stroke="url(#grad)"
-                strokeWidth="1.5"
-                fill="none"
-                transform="translate(0,0) scale(1.1) rotate(-30 50 50)"
-                strokeOpacity="0.6"
-            /> */}
+
         </Svg>
       </View>
       {/* The score text, layered on top */}

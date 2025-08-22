@@ -39,17 +39,6 @@ const OnBoardingStepNine: React.FC<OnBoardingStepEightProps> = ({
         }
     }, [currentStep]);
 
-    // const handlePressIn = () => {
-    //     Haptics.selectionAsync();
-
-    //     setIsHolding(true);
-    //     setHoldDuration(0);
-    //     intervalRef.current = setInterval(() => {
-    //         setHoldDuration(prevDuration => prevDuration + 10);
-
-    //     }, 10);
-    // };
-
     const handlePressIn = () => {
         Haptics.selectionAsync();
 

@@ -27,7 +27,6 @@ import OnBoardingStepTwo from '../components/onboarding/OnBoardingStepTwo';
 
 
 const GoalPill = ({ goal, index, currentStep }: { currentStep: number }) => {
-
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
   const rotate = useSharedValue((Math.random() - 0.5) * 50);
@@ -73,8 +72,6 @@ const GoalPill = ({ goal, index, currentStep }: { currentStep: number }) => {
 
 
 
-
-
   return (
     <Animated.View
       style={[
@@ -104,7 +101,7 @@ const GoalPillStepOne = ({ goal, index, currentStep }: { currentStep: number, in
   const fadeIn = useAnimatedStyle(() => ({
     opacity: fadeStepOneBadges.value
   }))
-
+   
 
   useEffect(() => {
     verticalPosition.value = withTiming(1, { duration: 1000 })
@@ -149,45 +146,6 @@ const GetStartedGoals = () => {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [showThanks, setShowThanks] = useState(false);
   const { isAuthenticated } = useAuth();
-
-
-  // // slide in from bottom value
-  // const verticalPosition = useSharedValue(50)
-  // const fadeValue = useSharedValue(0)
-  // const fadeStepOneBadges = useSharedValue(0)
-
-
-
-
-
-  // useEffect(() => {
-  //   verticalPosition.value = withTiming(1, { duration: 1000 })
-  //   fadeValue.value = withTiming(1, { duration: 1000 })
-  //   setTimeout(() => {
-  //     fadeStepOneBadges.value = withTiming(1, { duration: 1000 })
-  //   }, 1000)
-  // }, [])
-
-
-
-  // useEffect(() => {
-  //   verticalPosition.value = withTiming(1, { duration: 1000 })
-  //   fadeValue.value = withTiming(1, { duration: 1000 })
-  //   setTimeout(() => {
-  //     fadeStepOneBadges.value = withTiming(1, { duration: 1000 })
-  //   }, 1000)
-  // }, [])
-
-
-  // useEffect(() => {
-  //   if (currentStep === 2) {
-  //     verticalPositionThree.value = withTiming(0, { duration: 1000 });
-  //     fadeValueThree.value = withTiming(1, { duration: 1000 });
-  //     setTimeout(() => {
-  //       fadeValueThreeIcons.value = withTiming(1, { duration: 1000 })
-  //     }, 1000)
-  //   }
-  // }, [currentStep]);
 
 
   useEffect(() => {

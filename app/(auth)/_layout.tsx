@@ -1,5 +1,4 @@
 import { Slot } from 'expo-router';
-import { StatusBar } from "expo-status-bar";
 import React from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
 
@@ -7,7 +6,7 @@ import { KeyboardAvoidingView, Platform, View } from 'react-native';
 const _layout = () => {
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} className='flex-1'>
-            <StatusBar hidden={true} />
+            {/* <StatusBar hidden={true} /> */}
             <View className='flex-1'>
                 <Slot />
             </View>
