@@ -40,10 +40,10 @@ const DurationSelectorModal = ({ visible, onClose, onSave, initialDuration }: Du
                 <TouchableOpacity style={{ flex: 1 }} activeOpacity={1} onPressOut={onClose}>
                     <View className="flex-1 justify-around items-center p-6">
 
-                        {/* Empty view for spacing */}
+                    
                         <View />
 
-                        {/* Main Content */}
+                    
                         <View className="flex-row items-center justify-center w-full">
                             <TouchableOpacity onPress={handleDecrement} className="w-20 h-20 rounded-full border-2 border-white/50 justify-center items-center">
                                 <FontAwesome name="minus" size={24} color="white" />
@@ -59,7 +59,7 @@ const DurationSelectorModal = ({ visible, onClose, onSave, initialDuration }: Du
                                         shadowOpacity: 0.6,
                                         shadowRadius: 20,
                                         elevation: 25,
-                                    }}
+                                    }}         
                                 >
                                     <Text className="text-black text-6xl font-bold">{duration}</Text>
                                     <Text className="text-black/60 text-lg -mt-1">minutes</Text>

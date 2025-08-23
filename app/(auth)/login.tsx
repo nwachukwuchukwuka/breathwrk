@@ -174,8 +174,7 @@ const LoginScreen = () => {
                                     <TouchableOpacity
                                         className="bg-white rounded-full py-4 items-center mt-10"
                                         onPress={() => {
-                                            // Handle login logic here
-                                            setLoginModalVisible(false); // Close modal on login attempt
+                                            setLoginModalVisible(false);
                                         }}
                                     >
                                         <Text className="text-black text-lg font-bold">Log in</Text>

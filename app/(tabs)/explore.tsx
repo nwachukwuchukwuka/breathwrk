@@ -45,7 +45,7 @@ const SectionHeader = ({ title, viewAllHref }: { title: string; viewAllHref?: st
                     <Text className="text-gray-300 text-lg">view all</Text>
                 </TouchableOpacity>
             </Link>
-        )}
+        )}           
     </View>
 );
 
@@ -102,12 +102,12 @@ const DailyClassCard = ({ item }: { item: typeof dailyClasses[0] }) => (
             <Text className='text-black font-semibold text-lg '>
                 Play
             </Text>
-        </TouchableOpacity>
+        </TouchableOpacity>              
     </ImageBackground>
 
-)
+)         
 
-
+     
 
 const GuidedClassCard = ({ item }: { item: typeof guidedClasses[0] }) => (
     <Link
@@ -135,17 +135,12 @@ const GuidedClassCard = ({ item }: { item: typeof guidedClasses[0] }) => (
 )
 
 const gradientColors = ['#1b2f23', '#2d5a3d', '#3d7c56'] as const;
-// const gradientColors = ['#004d00', '#006400', '#00a000'] as const;
-
 
 
 
 const ExploreScreen = () => {
     return (
-        // <ImageBackground
-        //     source={require('../../assets/images/explore-bg.png')}
-        //     resizeMode="cover"
-        // >
+
 
         <LinearGradient
             colors={gradientColors}
@@ -214,7 +209,7 @@ const ExploreScreen = () => {
         </LinearGradient>
 
 
-        // </ImageBackground>
+
     )
 }
 

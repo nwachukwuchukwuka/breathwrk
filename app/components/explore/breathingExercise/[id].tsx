@@ -16,7 +16,7 @@ const breathingExercises = [
         inhale: 4,
         exhale: 6,
         duration: '5 min',
-        details: [ // Instead of a single description, we have an array of slides
+        details: [ 
             {
                 key: 'desc',
                 text: 'Calm was designed to reduce stress and soothe the mind while lowering your heart rate and blood pressure.'
@@ -60,7 +60,7 @@ const BreathingExerciseDetailScreen = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isAudioModalVisible, setAudioModalVisible] = useState(false);
     const [isDurationModalVisible, setDurationModalVisible] = useState(false);
-    const [currentDuration, setCurrentDuration] = useState(5); // Start with 5 minutes
+    const [currentDuration, setCurrentDuration] = useState(5); 
 
 
 

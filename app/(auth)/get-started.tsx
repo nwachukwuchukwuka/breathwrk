@@ -22,7 +22,7 @@ const Stat = ({ value, label }: { value: string, label: string }) => (
 
 const gradientColors = ['#004d00', '#006400', '#00a000'] as const;
 const OnboardingScreen = () => {
-    // const [isShowingSplash, setIsShowingSplash] = useState(true);
+    
     const [getStarted, setGetStarted] = useState(false)
     const { isShowingSplash, setIsShowingSplash } = useAuth();
 
@@ -47,15 +47,7 @@ const OnboardingScreen = () => {
         return () => clearTimeout(timer);
     }, []);
 
-    // useEffect(() => {
-
-    //     const timer = setTimeout(() => {
-    //         setIsShowingSplash(false);
-    //         display.value = withTiming(1, { duration: 1000 })
-    //     }, 4000);
-
-    //     return () => clearTimeout(timer);
-    // }, []);
+    
 
     const handleLogin = () => {
         Haptics.selectionAsync();

@@ -19,10 +19,10 @@ const Header = ({ onMenuPress, onBellPress }: { onMenuPress: () => void, onBellP
 
 const ProfileStats = () => (
   <View className=" mt-6">
-    <View className="flex-row items-center">
+    <View className="flex-row items-center">                
       <TouchableOpacity>
         <Image
-          source={{ uri: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500' }} 
+          source={{ uri: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500' }}                             
           className="w-20 h-28 rounded-full"
         />
       </TouchableOpacity>
@@ -51,7 +51,7 @@ const ProfileStats = () => (
           </View>
           <View className="w-full bg-gray-700 rounded-full h-10">
             <View className="bg-gray-400 h-10 rounded-full" style={{ width: '55%' }} />
-          </View>
+          </View>                           
         </View>
       </View>
     </View>
@@ -61,17 +61,17 @@ const ProfileStats = () => (
 const BreathScore = () => (
   <View className="items-center justify-center my-16">
     <View className="w-48 h-48 items-center justify-center">
-      {/* SVG for the wavy border */}
-      <View className="absolute">
+    
+      <View className="absolute">                             
         <Svg height="200" width="200" viewBox="0 0 100 100">
-          {/* Define the gradient that the lines will use */}
+        
           <Defs>
             <LinearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
               <Stop offset="0%" stopColor="#38bdf8" />
               <Stop offset="100%" stopColor="#34d399" />
             </LinearGradient>
           </Defs>
-          {/* The first, thicker wavy line */}
+        
           <Path
             d="M 50,5 A 45,45 0 1 1 49.9,5.001 M 50,5 C 60,15 60,35 50,45 C 40,35 40,15 50,5"
             stroke="url(#grad)"
@@ -82,7 +82,7 @@ const BreathScore = () => (
 
         </Svg>
       </View>
-      {/* The score text, layered on top */}
+    
       <Text className="text-white text-7xl font-bold mt-12">52</Text>
       <Text className="text-gray-100 text-xl">out of 100</Text>
     </View>
@@ -123,4 +123,4 @@ export default function ActivityScreen() {
     </ImageBackground>
 
   );
-}
+}                                                                

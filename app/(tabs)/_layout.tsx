@@ -19,10 +19,10 @@ export default function TabsLayout() {
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: 'gray',
                 tabBarStyle: {
-                    backgroundColor: 'rgba(13, 13, 13, 0.2)', // 70% opaque
+                    backgroundColor: 'rgba(13, 13, 13, 0.2)', 
                     borderTopWidth: 0,
-                    position: 'absolute', // optional, makes transparency visible above content
-                    elevation: 0,         // removes shadow on Android
+                    position: 'absolute', 
+                    elevation: 0,       
                 },
             }}
         >

@@ -1,13 +1,17 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import * as Haptics from "expo-haptics";
 import React, { useState } from 'react';
 import { Image, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
 
 
 type AudioSettingsModalProps = {
     visible: boolean;
     onClose: () => void;
-};
+    selectedTone: string;
+    setSelectedTone: (tone: string) => void;
+};    
 
 const tones = [
     { id: 'Sine', icon: <MaterialCommunityIcons name="sine-wave" size={28} color="white" /> },
@@ -30,17 +34,15 @@ const voices = [
 ];
 
 const AudioSettingsModal = ({
-    visible, onClose
+    visible, onClose, selectedTone, setSelectedTone
 }: AudioSettingsModalProps) => {
 
-    // State for each section, defaulting to the selections in the image
-    const [selectedTone, setSelectedTone] = useState('Synth');
     const [selectedSoundscape, setSelectedSoundscape] = useState('Forest');
     const [selectedVoice, setSelectedVoice] = useState('Off');
 
     const handleSave = () => {
         onClose();
-    }
+    }    
 
     return (
         <Modal
@@ -52,7 +54,6 @@ const AudioSettingsModal = ({
             <TouchableOpacity style={{ flex: 1 }} activeOpacity={1} onPressOut={onClose} className='justify-end'>
 
                 <View className='bg-[#283b32] rounded-t-3xl p-5 pb-10'>
-                    {/* <View className='bg-[#2E2E2E] rounded-t-3xl p-5 pb-10'> */}
 
                     {/* Grabber handle */}
                     <View className='w-24 h-1 bg-gray-500 rounded-full self-center mb-8' />
@@ -64,12 +65,18 @@ const AudioSettingsModal = ({
                     </View>
 
                     <ScrollView showsVerticalScrollIndicator={false}>
-                        {/* Inhale / Exhale Tone Section */}
+                        
                         <View className=' mt-[30px] mb-6'>
                             <Text className='text-white text-xl mb-3'>Inhale / Exhale Tone</Text>
                             <View className='bg-black/20 p-4 rounded-2xl flex-row justify-around'>
                                 {tones.map(tone => (
-                                    <TouchableOpacity key={tone.id} onPress={() => setSelectedTone(tone.id)} className='items-center'  >
+                                    <TouchableOpacity key={tone.id} onPress={() => {
+                                        setSelectedTone(tone.id)
+                                        Haptics.selectionAsync();
+
+                                    }
+                                    }
+                                        className='items-center'  >
                                         <View className={`w-16 h-16 rounded-full justify-center items-center bg-black/20 ${selectedTone === tone.id ? 'border-2 border-green-500' : ''}`}>
                                             {tone.icon}
                                         </View>
@@ -80,7 +87,7 @@ const AudioSettingsModal = ({
                         </View>
 
                         {/* Soundscape Section */}
-                        <View className="mb-6">
+                        <View className="mb-6">          
                             <Text className="text-white text-xl mb-3">Soundscape</Text>
                             <View className="bg-black/20 p-4 rounded-2xl flex-row justify-around">
                                 {soundscapes.map(item => (
@@ -94,7 +101,7 @@ const AudioSettingsModal = ({
                             </View>
                         </View>
 
-                        {/* Voice Guide Section */}
+                        
                         <View className="mb-6">
                             <Text className="text-white text-xl mb-3">Voice Guide</Text>
                             <View className="bg-black/20 p-4 rounded-2xl flex-row justify-around">
@@ -110,7 +117,7 @@ const AudioSettingsModal = ({
                         </View>
 
                     </ScrollView>
-                    {/* Save Button */}
+                   
                     <TouchableOpacity onPress={handleSave} className="bg-white rounded-full py-5 mt-4 mb-12">
                         <Text className="text-black text-lg font-bold text-center">Save</Text>
                     </TouchableOpacity>
